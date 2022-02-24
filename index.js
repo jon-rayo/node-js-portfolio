@@ -1,16 +1,10 @@
-var http = require('http');
-var url = require('url');
-var fs = require('fs')
+const express = require('express')
+const app = express()
 
-const server = http.createServer((req, res) => {
-console.log(req);
-res.writeHead(200, {'content-type': 'text/html'})
-fs.createReadStream('index.html').pipe(res)
 
-});
+app.use(express.static(__dirname + '/public'))
 
 
 const port = process.env.PORT || 8000;
-server.listen(port);
 
-console.log("Server running at http://localhost:%d", port);
+app.listen(port, () => console.log(`Express started on http://localhost:${port};`))
